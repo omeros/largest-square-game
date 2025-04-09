@@ -1,5 +1,5 @@
 <template>
-<div class="body">
+<div class="body" >
   <div class="header-container">
     <div class="header" >
       <div class="btn-container">
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <div style="height: 82vh;">
+  <div style="height: 82vh;" @click="test()">
     <BoundList :bounds="bounds" :mainBound="mainBound" :answerBound="answerBound"  />
   </div>
   <MyModal v-if="isShowMainBoundModal" @close="isShowMainBoundModal = false">
@@ -64,11 +64,10 @@
       <!-- <button class="modal-close-btn" @click="isShowMCoverBoundModal = false">Close Modal</button> -->
     </div>
   </MyModal>
-  <transition name="scale">
+  <transition name="scale" @click="test()">
     <div  v-show="isExplain" style="" class="explain">
         <img src="https://res.cloudinary.com/omerphoto/image/upload/v1731521344/explain2_sacwlc.png" alt="">
     </div>
-
   </transition>
   <div v-if="isXError" style="background-color: rgb(128, 209, 35); height: 200px;"> left should be smaller then rigth</div>
   <div  v-if="isYError"> Top should be bigger then Bottom</div>
@@ -303,6 +302,11 @@ import MyModal from '../cmps/MyModal.vue';
       explainBtn.value = 'grey'
     }
     isExplain.value = !isExplain.value;  // This will toggle the state each time the button is clicked
+  }
+  function test(){
+    if(isExplain.value){
+      isExplain.value = !isExplain.value;
+    }
   }
 // export default {
 //   name: 'BoundApp',
